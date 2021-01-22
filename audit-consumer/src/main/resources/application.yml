@@ -1,0 +1,46 @@
+spring.application.name : audit-consumer
+
+server.port: 7777
+
+#数据库配置
+spring:
+  datasource:
+    druid:
+      #连接信息
+      url: jdbc:mysql://134.175.7.121:3306/test
+      username: root
+      password: rocket34567892
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #连接池配置
+      min-idle: 5
+      initial-size: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #监控
+      filter:
+        wall:
+          enabled: true
+
+#kafka配置
+kafka:
+  log:
+    servers: 192.168.16.248:9092,192.168.16.248:9094,192.168.16.248:9096
+
+##mybatis-plus mapper xml 文件地址
+mybatis-plus.mapper-locations : classpath*:mapper/*Mapper.xml
+
+#mybatis-plus配置控制台打印完整带参数SQL语句
+mybatis-plus.configuration.log-impl : org.apache.ibatis.logging.stdout.StdOutImpl
+
+biz :
+  user :
+    topic : user_info

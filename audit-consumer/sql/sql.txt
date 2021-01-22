@@ -1,0 +1,31 @@
+CREATE TABLE `entry_log` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(16) DEFAULT NULL,
+  `trace_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_name` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `class_name` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `method_name` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_time` datetime DEFAULT NULL,
+  `parameters` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `result` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+CREATE TABLE `audit_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `db` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `db_table` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `operator_id` int(11) DEFAULT NULL,
+  `operation_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `old_data` text COLLATE utf8mb4_unicode_ci COMMENT '操作之前的数据',
+  `new_data` text COLLATE utf8mb4_unicode_ci COMMENT '操作后的数据',
+  `execution_time` mediumtext COLLATE utf8mb4_unicode_ci COMMENT '修改时间\n',
+  `db_sql` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trace_id` varchar(0) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `primary_ids` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '修改表的主键id',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
