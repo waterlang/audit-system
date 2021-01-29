@@ -2,6 +2,7 @@ package com.lang.oliver.service.config;
 
 import com.lang.oliver.service.filter.AuditCDCLogInterceptor;
 import com.lang.oliver.service.filter.TraceFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,6 @@ public class CommonConfig {
     @Bean
     public AuditCDCLogInterceptor auditLogInterceptor() {
         AuditCDCLogInterceptor sqlStatsInterceptor = new AuditCDCLogInterceptor();
-        Properties properties = new Properties();
-        properties.setProperty("auditTables", "crm.*");
-        sqlStatsInterceptor.setProperties(properties);
         return sqlStatsInterceptor;
     }
 
